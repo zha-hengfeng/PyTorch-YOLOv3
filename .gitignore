@@ -10,3 +10,6 @@ backup
 weights/*.weights
 __pycache__
 checkpoints
+data/Garbage_dataset/Annotations/*.xml
+data/Garbage_dataset/images/*.jpg
+/data/Garbage_dataset/labels/*.txt

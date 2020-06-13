@@ -81,6 +81,8 @@ class ListDataset(Dataset):
         # ---------
 
         img_path = self.img_files[index % len(self.img_files)].rstrip()
+        img_path = img_path + '.jpg'
+        # print(img_path)
 
         # Extract image as PyTorch tensor
         img = transforms.ToTensor()(Image.open(img_path).convert('RGB'))
@@ -101,6 +103,7 @@ class ListDataset(Dataset):
         # ---------
 
         label_path = self.label_files[index % len(self.img_files)].rstrip()
+        label_path = label_path + '.txt'
 
         targets = None
         if os.path.exists(label_path):

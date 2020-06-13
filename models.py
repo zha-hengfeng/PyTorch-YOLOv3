@@ -143,6 +143,7 @@ class YOLOLayer(nn.Module):
         num_samples = x.size(0)
         grid_size = x.size(2)
 
+        # print(x.size())
         prediction = (
             x.view(num_samples, self.num_anchors, self.num_classes + 5, grid_size, grid_size)
             .permute(0, 1, 3, 4, 2)
@@ -187,6 +188,9 @@ class YOLOLayer(nn.Module):
                 anchors=self.scaled_anchors,
                 ignore_thres=self.ignore_thres,
             )
+            # 解决 warning: indexing with dtype torch.uint8 is now deprecated, please use a dtype torch.bool instead.
+            obj_mask = obj_mask.bool()
+            noobj_mask = noobj_mask.bool()
 
             # Loss : Mask outputs to ignore non-existing objects (except with conf. loss)
             loss_x = self.mse_loss(x[obj_mask], tx[obj_mask])
