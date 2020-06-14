@@ -7,6 +7,22 @@ A minimal PyTorch implementation of YOLOv3, with support for training, inference
     $ cd PyTorch-YOLOv3/
     $ sudo pip3 install -r requirements.txt
 
+使用华为云杯垃圾检测数据集  
+```
+python /utils/labels_xml2txt.py # 转化标签  
+python trainval2train_val.py    # 划分数据集  
+```
+目录结构:  
+```
+data/  
+  --Annotations # xml文件  
+  --images  # 图片  
+  --labels  # 使用脚本生成，脚本位置 /utils/labels_xml2txt.py  
+  --trainval.txt    # 垃圾检测数据集内的图片列表
+  --train_classes.txt   # 类映射文件
+  --trainval2train_val.py   # 划分数据集为训练集和验证集  
+``` 
+
 ##### Download pretrained weights
     $ cd weights/
     $ bash download_weights.sh
